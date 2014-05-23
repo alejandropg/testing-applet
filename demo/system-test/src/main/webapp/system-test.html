@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Testing Applet</title>
+
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+
+    <script src="https://www.java.com/js/deployJava.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        function callAppletMethod() {
+            console.log("driaApplet = " + driaApplet);
+            driaApplet.actionPerformed(null);
+        }
+
+        function simulateUserInteractionWithAppletDriver() {
+            driaApplet.getDriver().textBox('inTxtArea').setText('Esto es desde JS');
+            driaApplet.getDriver().button('btn').click();
+            console.log('outTxtArea = ' + driaApplet.getDriver().textBox('outTxtArea').text());
+        }
+
+        function deployApplet(driverType, permissions) {
+            var attributes = {
+                id: driverType + 'Applet',
+                code: 'com.autentia.applet.' + driverType + '.' + capitalize(driverType) + 'DrivenDemoApplet.class',
+                archive: 'applet-' + driverType + '-1.0-SNAPSHOT.jar',
+                width: 300,
+                height: 300
+            };
+            var parameters = {
+                fontSize: 16,
+                permissions: permissions,
+                classloader_cache: false,
+                loggerLevel: 'DEBUG'
+            };
+            deployJava.runApplet(attributes, parameters, '1.6');
+        }
+
+        function capitalize(string) {
+            return string[0].toUpperCase() + string.substring(1);
+        }
+    </script>
+</head>
+
+<body class="page">
+
+<header>
+    <h1>Ejemplo de cómo testear un applet de forma automática</h1>
+</header>
+
+<h2>Entorno de ejecución del applet</h2>
+<script>
+    var browser = '<p>Browser detectado: ' + deployJava.getBrowser() + '</p>';
+    document.writeln(browser);
+
+    var jres = deployJava.getJREs();
+    var jresMsg = '<p>JREs detectadas:</p><ul><li>' + jres.join('</li><li>') + '</li></ul>';
+    document.writeln(jresMsg);
+</script>
+
+
+<h2>Generación del jar del applet</h2>
+
+<p>Se ha generado una cadena de certificados de ejemplo: <code>demoCA --> demoCert1 --> demoCert2</code>.
+    El applet está firmado con <code>demoCert1</code>.</p>
+<p>El certificado <code>demoCA</code> se ha generado como si se tratara de una Entidad Certificadora real (CA - Certificate Authority),
+    usando <strong>OpenSSL</strong>. Mientras que <code>demoCert1</code> y <code>demoCert2</code> se han creado con la
+    herramienta de Java <strong><code>keytool</code></strong>.</p>
+<p>Así, con keytool se generan los certifidos autofirmaods, luego se manda una petición de firma (.csr) de <code>demoCert1</code> a la
+    CA y esta devuelve el certificado (.cer) <code>demoCert1</code> firmado por la CA. Luego <code>demoCert2</code> se 
+    firma con <code>demoCert1</code>, creando así la cadena completa.</p>
+<p>En el ejemplo se ha usado <code>demoCert1</code> para firmar el applet en lugar de <code>demoCert2</code> ya que el Firefox sólo reconoce
+    certificados marcados como CA, y en los certificados creados con <code>keytool</code> no se puede activar esta característica.</p>
+<p>Para ver en detalle el proceso se puede ver el script de creación de los certificaods: <code>generate-demo-certs.sh</code></p>
+
+
+<h2>Despliegue del applet</h2>
+
+<p>Dentro de las <em>Deployment Tools</em> de Oracle, tenémos el script
+    <a href="https://www.java.com/js/deployJava.txt" target="_blank">deployJava.js</a> para facilitar el despliegue de
+    RIAs (Rich Internet Applications) en distintos navegadores y versiones.</p>
+
+<ul class="applet-list">
+    <li>
+        <figure>
+            <script type="text/javascript">deployApplet('dria', 'sandbox');</script>
+            <figcaption>DRIA Applet</figcaption>
+        </figure>
+    </li>
+    <li>
+        <figure>
+            <script type="text/javascript">deployApplet('fest', 'all-permissions');</script>
+            <figcaption>FEST Applet</figcaption>
+        </figure>
+    </li>
+</ul>
+
+<section class="manual-testing">
+    <ul>
+        <li><a href="javascript:callAppletMethod();">Test DRIA 1 - Llamar método del Applet desde JavaScript</a></li>
+        <li><a href="javascript:simulateUserInteractionWithAppletDriver();">Test DRIA 2 - Simular inteacción de usuario con el AppletDriver</a></li>
+    </ul>
+</section>
+
+</body>
+
+</html>

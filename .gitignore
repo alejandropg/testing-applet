@@ -1,2 +1,13 @@
+# Directorio de certificados, generado automáticamente por generate-demo-certs.sh
+certs/
+
+# Gradle
 .gradle
 build/
+gradle-app.setting
+
+# IntelliJ
+*.iml
+
+# Node
+node_modules/

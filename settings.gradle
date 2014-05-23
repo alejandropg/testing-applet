@@ -1,0 +1,15 @@
+//rootProject.name = 'testing-applet'
+
+include 'log'
+
+include 'dria',
+        'dria:dria-swing',
+        'dria:dria-applet'
+
+include 'fest'
+
+include 'demo',
+        'demo:applet',
+        'demo:applet-dria',
+        'demo:applet-fest',
+        'demo:system-test'

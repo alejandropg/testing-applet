@@ -1,0 +1,35 @@
+
+dependencies {
+    compile project(':demo:applet')
+    compile project(':fest')
+    testCompile "org.easytesting:fest-swing:$festSwingVersion"
+}
+
+jar {
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    manifest {
+        attributes(
+                'Application-Name': 'Testing Applet with FEST',
+                'Implementation-version': version,
+                'Permissions': 'all-permissions',
+                'Codebase': 'localhost',
+                'Application-Library-Allowable-Codebase': 'localhost',
+                'Caller-Allowable-Codebase': 'localhost'
+        )
+    }
+}
+
+task signJar(dependsOn: jar) << {
+    ant.signjar(
+            jar: jar.archivePath,
+            keystore: '../../certs/testing-applet.jks',
+            storepass: 'autentia',
+            alias: 'demoCert1'
+    )
+}
+
+task copyJarToWebappSourceDir(type: Copy, dependsOn: signJar) {
+    from jar.archivePath
+    into '../system-test/src/main/webapp/'
+}
+test.dependsOn copyJarToWebappSourceDir

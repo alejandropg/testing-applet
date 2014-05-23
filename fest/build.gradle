@@ -1,0 +1,5 @@
+
+dependencies {
+    compile project(':log')
+    compile "org.easytesting:fest-swing:$festSwingVersion"
+}

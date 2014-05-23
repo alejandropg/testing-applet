@@ -1,0 +1,12 @@
+
+dependencies {
+    testCompile project(':demo:applet-dria')
+    testCompile project(':demo:applet-fest')
+    testCompile project(':dria:dria-applet')
+    testCompile "org.seleniumhq.selenium:selenium-java:$seleniumhqVersion"
+}
+
+task deleteJarFromWebappSourceDir(type: Delete) << {
+    delete 'src/main/webapp/*.jar'
+}
+clean.dependsOn deleteJarFromWebappSourceDir

@@ -1,0 +1,5 @@
+
+dependencies {
+    compile project(':dria')
+    compile "org.seleniumhq.selenium:selenium-java:$seleniumhqVersion"
+}

@@ -1,0 +1,22 @@
+subprojects {
+    apply plugin: 'java'
+
+    sourceCompatibility = 1.7
+
+    version = '1.0-SNAPSHOT'
+
+    repositories {
+        mavenCentral()
+    }
+
+    ext {
+        festSwingVersion = '1.2.1'
+        seleniumhqVersion = '2.41.0'
+    }
+
+    dependencies {
+        testCompile 'junit:junit:4.11'
+        testCompile 'org.hamcrest:hamcrest-library:1.3'
+        testCompile 'org.mockito:mockito-core:1.9.5'
+    }
+}
