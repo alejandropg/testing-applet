@@ -8,6 +8,14 @@ gradle-app.setting
 
 # IntelliJ
 *.iml
+.idea/
 
 # Node
 node_modules/
+
+# Jars copiados a directorio de fuentes para servirlos por Node
+#demo/system-test/src/main/webapp/applet-*.jar
+
+# Errores de la JVM
+demo/system-test/hs_err*.log
+
