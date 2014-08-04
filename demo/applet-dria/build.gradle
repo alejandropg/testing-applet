@@ -6,7 +6,7 @@ dependencies {
 }
 
 jar {
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } } // Para generar un jar con todas las dependencias.
     manifest {
         attributes(
                 'Application-Name': 'Testing Applet with DRIA',

@@ -39,14 +39,14 @@ public class DemoAppletTest {
     }
 
     @Test
-    public void given_new_applet__whenInit__then_all_components_with_name_are_registered() throws Exception {
+    public void given_new_applet__when_init__then_all_components_with_name_are_registered() throws Exception {
         assertThat(driver.textBox("inTxtArea"), notNullValue());
         assertThat(driver.textBox("outTxtArea"), notNullValue());
         assertThat(driver.button("btn"), notNullValue());
     }
 
     @Test(expected = ComponentLookupException.class)
-    public void given_a_registered_applet__when_when_retrieve_an_InputText_with_a_wrong_name__then_throw_exception() throws Exception {
+    public void given_a_registered_applet__when_retrieve_an_InputText_with_a_wrong_name__then_throw_exception() throws Exception {
         driver.textBox("non existing");
     }
 
