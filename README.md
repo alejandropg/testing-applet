@@ -2,13 +2,16 @@
 
 En este ejemplo vamos a explorar como testear de forma automática un applet.
 
+Haremos tanto test untirarios que prueban de forma local el applet como tests de sistema donde ejecutaremos los tests dentro de un navegador con todas las restricciones de seguridad que ello implica.
+
+
 
 ## Requisitos
 
-* Java >= v1.7
-* Gradle >= 1.11
-* Node >= v0.10.26
-* OpenSSL >= 0.9.8y
+*   Java >= v1.7
+*   Gradle >= 1.11
+*   Node >= v0.10.26
+*   OpenSSL >= 0.9.8y
 
 
 
@@ -50,3 +53,26 @@ Basta con ir a la raiz del proyecto y ejecutar:
 
 Esto no sólo compilará todas las clases, sino que lanzará todos los tests, incluidos los de sistema, que levantan
 un Firefox y hacen peticiones contra el servidor de Node que hemos levantado en el paso anterior.
+
+
+
+## 4. Tutorial
+
+He hecho un tutorial para intentar explicar mejor el código y que sirva de guía para todos los módulos que se encuentran en este repositior.
+
+El tutorial está publicado en: <http://www.adictosaltrabajo.com/tutoriales/tutoriales.php?pagina=testing-applet>
+
+
+
+## 5. Documentación de referencia y ejemplos
+
+* <http://docs.oracle.com/javase/tutorial/deployment/applet/index.html>
+* <http://docs.oracle.com/javase/tutorial/deployment/applet/examplesIndex.html>
+* <http://docs.oracle.com/javase/7/docs/technotes/guides/jweb/security/manifest.html>
+* <http://docs.oracle.com/javase/8/docs/technotes/guides/jweb/security/manifest.html>
+* <http://www.oracle.com/technetwork/java/javase/7u-relnotes-515228.html>
+* <https://jdk6.java.net/plugin2/liveconnect/>
+* <https://blogs.oracle.com/java-platform-group/entry/liveconnect_changes_in_7u45> (October 2013)
+* <https://blogs.oracle.com/java-platform-group/entry/new_security_requirements_for_rias> (in 7u51 (January 2014))
+* <http://java.com/en/download/help/appsecuritydialogs.xml#revokecheck>
+
