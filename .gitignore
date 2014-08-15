@@ -6,6 +6,9 @@ certs/
 build/
 gradle-app.setting
 
+# Maven
+target/
+
 # IntelliJ
 *.iml
 .idea/

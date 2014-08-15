@@ -2,14 +2,13 @@
 
 include 'log'
 
-include 'dria',
+include 'dria:dria-api',
         'dria:dria-swing',
         'dria:dria-applet'
 
 include 'fest'
 
-include 'demo',
-        'demo:applet',
+include 'demo:applet',
         'demo:applet-dria',
         'demo:applet-fest',
         'demo:system-test'

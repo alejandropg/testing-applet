@@ -3,7 +3,6 @@ package com.autentia.dria.swing;
 import com.autentia.dria.Button;
 
 import javax.swing.*;
-import java.lang.reflect.InvocationTargetException;
 
 public class SwingButton implements Button {
     public static final int SIMULATED_PRESS_TIME = 0;
