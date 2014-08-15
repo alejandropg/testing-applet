@@ -9,12 +9,69 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <url>http://www.adictosaltrabajo.com/tutoriales/tutoriales.php?pagina=testing-applet</url>
+    <description>Tutorial para hacer tests unitarios y de sistema, de forma automática, de un Applet.</description>
+    <inceptionYear>2014</inceptionYear>
+
+    <properties>
+        <compileSource>1.7</compileSource>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
     <modules>
         <module>demo</module>
         <module>dria</module>
         <module>fest</module>
         <module>log</module>
     </modules>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jarsigner-plugin</artifactId>
+                    <version>1.3.2</version>
+                    <configuration>
+                        <archive>${project.build.directory}/${project.build.finalName}-jar-with-dependencies.jar</archive>
+                        <keystore>../../certs/testing-applet.jks</keystore>
+                        <storepass>autentia</storepass>
+                        <alias>demoCert1</alias>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>sign-jar</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>sign</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>copy-signed-jar</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>run</goal>
+                            </goals>
+                            <configuration>
+                                <target>
+                                    <copy file="${project.build.directory}/${project.build.finalName}-jar-with-dependencies.jar"
+                                          tofile="../system-test/src/main/webapp/${project.build.finalName}.jar"/>
+                                </target>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
     <dependencyManagement>
         <dependencies>

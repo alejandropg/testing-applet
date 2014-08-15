@@ -5,6 +5,8 @@ subprojects {
 
     version = '1.0-SNAPSHOT'
 
+    description = 'Tutorial para hacer tests unitarios y de sistema, de forma automática, de un Applet.'
+
     repositories {
         mavenCentral()
     }

@@ -13,6 +13,49 @@
     <groupId>testing-applet.demo</groupId>
     <artifactId>applet-dria</artifactId>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Application-Name>Testing Applet with DRIA</Application-Name>
+                            <Implementation-version>${project.version}</Implementation-version>
+                            <Permissions>sandbox</Permissions>
+                            <Codebase>localhost</Codebase>
+                            <Application-Library-Allowable-Codebase>localhost</Application-Library-Allowable-Codebase>
+                            <Caller-Allowable-Codebase>localhost</Caller-Allowable-Codebase>
+                        </manifestEntries>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>assemble-all</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jarsigner-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
     <dependencies>
         <dependency>
             <groupId>testing-applet.demo</groupId>
